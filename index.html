@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Тест на долбаёба с видео</title>
+<title>Тест на долбаёба с фото</title>
 <style>
     body {
         background-color: black;
@@ -33,17 +33,22 @@
     #result {
         margin-top: 30px;
     }
-    video {
-        margin-top: 20px;
+    img {
         width: 80%;
         max-width: 600px;
-        border: 3px solid lime;
+        border: 5px solid lime;
         border-radius: 10px;
+        margin-top: 20px;
+    }
+    .final-text {
+        font-size: 80px;
+        color: lime;
+        margin-top: 20px;
     }
 </style>
 </head>
 <body>
-<h1>Тест на долбаёба с видео</h1>
+<h1>Тест на долбаёба</h1>
 <div id="quiz"></div>
 <div id="feedback"></div>
 <div id="result"></div>
@@ -72,7 +77,7 @@ function showQuestion() {
     if(current >= questions.length){
         quizDiv.style.display = "none";
         feedbackDiv.style.display = "none";
-        showVideo();
+        showResultImage();
         return;
     }
     const q = questions[current];
@@ -104,13 +109,10 @@ function checkAnswer(isCorrect){
     setTimeout(showQuestion, 1500);
 }
 
-function showVideo(){
+function showResultImage(){
     resultDiv.innerHTML = `
-        <div>Вот твой результат:</div>
-        <video controls autoplay>
-            <source src="https://sex-studentki.team/video/u-neznakomki-i-sis-ki-sochnye-i-p-zda-ljublju-ebat-sja-v-poezdah-146427" type="video/mp4">
-            Твой браузер не поддерживает видео.
-        </video>
+        <img src="photo.jpg" alt="Результат">
+        <div class="final-text">ХУЙ</div>
     `;
 }
 
