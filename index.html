@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест на долбаёба с видео</title>
+<style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+    }
+    h1 {
+        color: red;
+    }
+    .question {
+        margin: 20px 0;
+        font-size: 24px;
+    }
+    button {
+        margin: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    #feedback {
+        margin-top: 20px;
+        font-size: 20px;
+        color: orange;
+    }
+    #result {
+        margin-top: 30px;
+    }
+    video {
+        margin-top: 20px;
+        width: 80%;
+        max-width: 600px;
+        border: 3px solid lime;
+        border-radius: 10px;
+    }
+</style>
+</head>
+<body>
+<h1>Тест на долбаёба с видео</h1>
+<div id="quiz"></div>
+<div id="feedback"></div>
+<div id="result"></div>
+
+<script>
+const questions = [
+    {q: "1. Сколько будет 2+2?", a: ["4", "5", "3"], correct: 0},
+    {q: "2. Земля плоская?", a: ["Да", "Нет", "Может быть"], correct: 1},
+    {q: "3. Солнце встает на востоке?", a: ["Да", "Нет", "Иногда"], correct: 0},
+    {q: "4. Курица — это птица?", a: ["Да", "Нет", "Не уверен"], correct: 0},
+    {q: "5. 0 делить на 1?", a: ["0", "1", "Ошибка"], correct: 0},
+    {q: "6. Вода мокрая?", a: ["Да", "Нет", "Не знаю"], correct: 0},
+    {q: "7. Снег горячий?", a: ["Да", "Нет", "Иногда"], correct: 1},
+    {q: "8. HTML — язык программирования?", a: ["Да", "Нет", "Не уверен"], correct: 1},
+    {q: "9. Луна — планета?", a: ["Да", "Нет", "Может быть"], correct: 1},
+    {q: "10. Вы долбаёб?", a: ["Да", "Нет", "Может"], correct: 0},
+];
+
+let current = 0;
+let quizDiv = document.getElementById('quiz');
+let feedbackDiv = document.getElementById('feedback');
+let resultDiv = document.getElementById('result');
+
+function showQuestion() {
+    feedbackDiv.textContent = "";
+    if(current >= questions.length){
+        quizDiv.style.display = "none";
+        feedbackDiv.style.display = "none";
+        showVideo();
+        return;
+    }
+    const q = questions[current];
+    quizDiv.innerHTML = `<div class="question">${q.q}</div>`;
+    q.a.forEach((answer, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = answer;
+        btn.onclick = () => checkAnswer(index === q.correct);
+        quizDiv.appendChild(btn);
+    });
+}
+
+function checkAnswer(isCorrect){
+    if(isCorrect){
+        feedbackDiv.style.color = "lime";
+        feedbackDiv.textContent = "Верно! Ты ещё не полный долбаёб.";
+    } else {
+        feedbackDiv.style.color = "red";
+        const insults = [
+            "Ох ты ж… реально долбаёб!",
+            "Серьёзно? Подумай, прежде чем нажимать.",
+            "Да ты просто космос тупой!",
+            "Умнейший дебил на связи!",
+            "Это было так очевидно… но нет, ты опять провалился."
+        ];
+        feedbackDiv.textContent = insults[Math.floor(Math.random() * insults.length)];
+    }
+    current++;
+    setTimeout(showQuestion, 1500);
+}
+
+function showVideo(){
+    resultDiv.innerHTML = `
+        <div>Вот твой результат:</div>
+        <video controls autoplay>
+            <source src="https://sex-studentki.team/video/u-neznakomki-i-sis-ki-sochnye-i-p-zda-ljublju-ebat-sja-v-poezdah-146427" type="video/mp4">
+            Твой браузер не поддерживает видео.
+        </video>
+    `;
+}
+
+showQuestion();
+</script>
+</body>
+</html>
